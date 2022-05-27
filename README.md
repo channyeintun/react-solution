@@ -1,5 +1,12 @@
 # Start the server
 
+## Pre-requisites
+
+  - JDK 8 is required to run the server
+  - Server is implemented using Java and Spring Boot
+  - npm is required to run the client
+  - Client is implemented using JavaScript and React
+
 ```
       cd server
       ./mvnw clean install
