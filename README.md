@@ -25,4 +25,9 @@ The server will be running on localhost:8080.
 
 The client will be running on localhost:3000.  
   
-Taken time to implement this project: 6 hours
+Taken time to implement this project: 6 hours.
+
+![list](https://github.com/channyeintun/react-solution/blob/main/ssa.png?raw=true);  
+  
+
+![form](https://github.com/channyeintun/react-solution/blob/main/ssb.png?raw=true)
