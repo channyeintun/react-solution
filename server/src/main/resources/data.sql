@@ -1,0 +1,2 @@
+INSERT INTO product (process_title,subprocess_title,subprocess_version) values('A Process','a1','a1.1');
+INSERT INTO product (process_title,subprocess_title,subprocess_version) values('B Process','b1','b1.2');
