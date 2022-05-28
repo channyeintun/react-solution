@@ -2,7 +2,6 @@ import { ProductList } from "./ProductList";
 import { Main } from './Main';
 import { RegistrationForm } from "./RegistrationForm";
 import { useRoutes } from 'react-router-dom';
-import { Product } from "./Product";
 import { EditForm } from "./EditForm";
 
 function App() {
@@ -14,10 +13,6 @@ function App() {
                         {
                               index:true,
                               element:<ProductList />
-                        },
-                        {
-                              path:":id",
-                              element:<Product />
                         },
                         {
                               path:"register",
