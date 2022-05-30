@@ -168,7 +168,7 @@ class ProductForm extends React.Component {
                                           formData.map((data, kindex) => {
                                                 return (
                                                       <Col span={24} key={kindex}>
-                                                            <Choice selected={selectedProcess}
+                                                            <Choice selectedLabel={selectedProcess}
                                                                   label={data.title}
                                                                   onChange={this.onChangeProcess}
                                                                   isNode={true}
@@ -178,7 +178,7 @@ class ProductForm extends React.Component {
                                                                         data.subProcesses.map((subprocess, index) => {
                                                                               return (
 
-                                                                                    <Choice selected={selectedSubprocess}
+                                                                                    <Choice selectedLabel={selectedSubprocess}
                                                                                           label={subprocess.title}
                                                                                           onChange={this.onChangeSubprocess}
                                                                                           isNode={true}
@@ -187,7 +187,7 @@ class ProductForm extends React.Component {
                                                                                           {
                                                                                                 subprocess.versions.map((version, jindex) => {
                                                                                                       return (
-                                                                                                            <Choice selected={selectedSubprocessVersion}
+                                                                                                            <Choice selectedLabel={selectedSubprocessVersion}
                                                                                                                   label={version}
                                                                                                                   onChange={this.onChangeSubprocessVersion}
                                                                                                                   isNode={false}

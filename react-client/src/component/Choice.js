@@ -4,7 +4,7 @@ import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 import { Checkbox, Row, Col } from "antd";
 
 export function Choice({
-      selected,
+      selectedLabel,
       onChange,
       label,
       children,
@@ -27,7 +27,7 @@ export function Choice({
                         <Row gutter={[16, 16]}>
                               <Col>{isNode ? toggler : null}</Col>
                               <Col>
-                                    <Checkbox checked={selected === label}
+                                    <Checkbox checked={selectedLabel === label}
                                           onChange={() => onChange(label)}>{label}</Checkbox>
                               </Col>
                         </Row>
@@ -44,7 +44,7 @@ export function Choice({
 
 Choice.propTypes = {
       isNode: PropTypes.bool,
-      selected: PropTypes.string.isRequired,
+      selectedLabel: PropTypes.string.isRequired,
       uniqueKey: PropTypes.oneOfType([
             PropTypes.string,
             PropTypes.number,
