@@ -53,7 +53,6 @@ export class ProductList extends React.Component {
       }
 
       deleteSuccessHandler = (res) => {
-            console.log('res', res);
             this.update({
                   products: this.state.products.filter(
                         product => product.id !== +res.id
