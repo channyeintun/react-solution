@@ -67,6 +67,7 @@ export class RegistrationForm extends React.Component {
                               })
                         })
                         .catch(err => {
+                              message.error(err.message);
                               that.update({ loading: false })
                         })
             }
@@ -126,7 +127,7 @@ export class RegistrationForm extends React.Component {
                         that.update({
                               loading: false
                         });
-                        message.error("Failed to save")
+                        message.error(err.message);
                   })
             }
             else {

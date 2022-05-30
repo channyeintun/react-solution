@@ -1,4 +1,4 @@
-import { Table, Space, Modal, Row, Col } from 'antd';
+import { Table, Space, Modal, Row, Col, message } from 'antd';
 import React from 'react';
 import { productService } from '../service';
 import { Link } from 'react-router-dom';
@@ -21,8 +21,9 @@ export class ProductList extends React.Component {
                               products
                         })
                   })
-                  .catch(err=>{
-                        this.update({loading:false})
+                  .catch(err => {
+                        message.error(err.message);
+                        this.update({ loading: false })
                   });
       }
 
@@ -98,7 +99,7 @@ export class ProductList extends React.Component {
                   return column;
             })
             return (
-                  <Row gutter={[16,16]}>
+                  <Row gutter={[16, 16]}>
                         <Col span={24}>
                               <h1>Product List</h1>
                         </Col>
