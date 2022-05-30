@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 export function Header() {
-      return <nav style={styles.nav}>
+      return (<nav style={styles.nav}>
             <ul style={styles.menu}>
                   <li style={styles.li}>
                         <Link to="/" style={styles.link}>Product List</Link>
@@ -10,7 +10,7 @@ export function Header() {
                         <Link to="/register" style={styles.link}>Register Product</Link>
                   </li>
             </ul>
-      </nav>
+      </nav>);
 }
 
 const styles = {

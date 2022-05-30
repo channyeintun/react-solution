@@ -95,6 +95,7 @@ export class ProductList extends React.Component {
                         }
                   }
             ]
+            
             columns = columns.map(column => {
                   column["onHeaderCell"] = (column) => {
                         return {
@@ -103,6 +104,7 @@ export class ProductList extends React.Component {
                   }
                   return column;
             })
+
             return (
                   <Row gutter={[16, 16]}>
                         <Col span={24}>

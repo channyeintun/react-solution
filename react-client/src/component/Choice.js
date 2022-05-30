@@ -12,6 +12,7 @@ export function Choice({
       uniqueKey
 }) {
       const [visible, setVisible] = useState(false);
+
       const toggler = visible ? <MinusCircleOutlined
             style={{ color: '#00a6fb' }}
             onClick={
@@ -21,6 +22,7 @@ export function Choice({
             onClick={
                   () => setVisible(true)
             } />;
+            
       return (
             <Row key={uniqueKey}>
                   <Col span={24}>

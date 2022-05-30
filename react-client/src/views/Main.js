@@ -2,12 +2,12 @@ import { Outlet } from "react-router-dom";
 import { Header } from "./Header";
 
 export function Main() {
-      return <main style={styles.main}>
+      return (<main style={styles.main}>
             <Header />
             <div style={styles.outlet}>
                   <Outlet />
             </div>
-      </main>
+      </main>);
 }
 
 const styles = {

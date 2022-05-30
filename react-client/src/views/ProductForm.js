@@ -190,7 +190,6 @@ class ProductForm extends React.Component {
                                                                                                             <Choice selectedLabel={selectedSubprocessVersion}
                                                                                                                   label={version}
                                                                                                                   onChange={this.onChangeSubprocessVersion}
-                                                                                                                  isNode={false}
                                                                                                                   uniqueKey={jindex}
                                                                                                                   key={jindex}></Choice>
                                                                                                       )
