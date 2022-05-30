@@ -4,53 +4,40 @@ import { productService } from "../service";
 import { Choice } from "../component/Choice";
 import { withRouter } from "../hoc/withRouter";
 
+function createFormData(char) {
+      if (typeof char !== 'string') return;
+
+      const concat_char = str => char + str;
+
+      return {
+            title: char.toUpperCase() + " Process",
+            subProcesses: [
+                  {
+                        title: char + "1",
+                        versions: ["1.1", "1.2"].map(concat_char)
+                  },
+                  {
+                        title: char + "2",
+                        versions: ["2.1", "2.2"].map(concat_char)
+                  }
+            ]
+      };
+
+}
+
+const formData = ['a', 'b', 'c'].map(createFormData);
+
+const getFirstChar = str => str.toLowerCase().split(" ")[0];
+
+const isIncludedIn = value => str => value.toString().includes(getFirstChar(str));
+
 class ProductForm extends React.Component {
       state = {
             selectedProcess: "",
             selectedSubprocess: "",
             selectedSubprocessVersion: "",
             loading: false,
-            formData: [
-                  {
-                        title: "A Process",
-                        subProcesses: [
-                              {
-                                    title: "a1",
-                                    versions: ["a1.1", "a1.2"]
-                              },
-                              {
-                                    title: "a2",
-                                    versions: ["a2.1", "a2.2"]
-                              }
-                        ]
-                  },
-                  {
-                        title: "B Process",
-                        subProcesses: [
-                              {
-                                    title: "b1",
-                                    versions: ["b1.1", "b1.2"]
-                              },
-                              {
-                                    title: "b2",
-                                    versions: ["b2.1", "b2.2"]
-                              }
-                        ]
-                  },
-                  {
-                        title: "C Process",
-                        subProcesses: [
-                              {
-                                    title: "c1",
-                                    versions: ["c1.1", "c1.2"]
-                              },
-                              {
-                                    title: "c2",
-                                    versions: ["c2.1", "c2.2"]
-                              }
-                        ]
-                  }
-            ]
+            formData: formData
       }
 
       componentDidMount() {
@@ -83,7 +70,11 @@ class ProductForm extends React.Component {
 
       onChangeSubprocess = (value) => {
             const { formData } = this.state;
-            const process = formData.filter(process => value.includes(process.title.toLowerCase().split(" ")[0]));
+
+            const isIncludedInValue = isIncludedIn(value);
+
+            const process = formData.filter(({ title }) => isIncludedInValue(title));
+
             this.update({
                   selectedProcess: process ? process[0].title : '',
                   selectedSubprocess: value,
@@ -93,10 +84,17 @@ class ProductForm extends React.Component {
 
       onChangeSubprocessVersion = (value) => {
             const { formData } = this.state;
-            const splitted = value.split(".")[0];
-            const filtered = formData.filter(process => splitted.includes(process.title.toLowerCase().split(" ")[0]));
+
+            const firstStr = value.split(".")[0];
+
+            const isIncludedInFirstStr = isIncludedIn(firstStr);
+
+            const filtered = formData.filter(({ title }) => isIncludedInFirstStr(title));
+
             const process = filtered ? filtered[0] : null;
-            const subprocess = process?.subProcesses?.filter(subp => subp.title === splitted);
+
+            const subprocess = process?.subProcesses?.filter(subp => subp.title === firstStr);
+
             this.update({
                   selectedProcess: process ? process.title : '',
                   selectedSubprocess: subprocess ? subprocess[0].title : '',
@@ -116,14 +114,6 @@ class ProductForm extends React.Component {
                         subprocessTitle: selectedSubprocess,
                         subprocessVersion: selectedSubprocessVersion,
                   }).then(product => {
-
-                        that.update({
-                              loading: false,
-                              selectedProcess: product.processTitle,
-                              selectedSubprocess: product.subprocessTitle,
-                              selectedSubprocessVersion: product.subprocessVersion
-                        });
-
                         this.props.navigate("/");
 
                         message.success((params?.id ? "Updated" : "Saved") + " successfully");
