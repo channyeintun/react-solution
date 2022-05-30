@@ -20,6 +20,9 @@ export class ProductList extends React.Component {
                               loading: false,
                               products
                         })
+                  })
+                  .catch(err=>{
+                        this.update({loading:false})
                   });
       }
 
