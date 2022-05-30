@@ -1,10 +1,10 @@
 import { Row, Col, Button, message } from "antd";
-import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
-import Checkbox from "antd/lib/checkbox/Checkbox";
-import React, { useState } from "react";
+import React from "react";
 import { productService } from "../service";
+import { Choice } from "../component/Choice";
+import { withRouter } from "../hoc/withRouter";
 
-export class RegistrationForm extends React.Component {
+class ProductForm extends React.Component {
       state = {
             selectedProcess: "",
             selectedSubprocess: "",
@@ -116,12 +116,16 @@ export class RegistrationForm extends React.Component {
                         subprocessTitle: selectedSubprocess,
                         subprocessVersion: selectedSubprocessVersion,
                   }).then(product => {
+
                         that.update({
                               loading: false,
-                              selectedProcess: '',
-                              selectedSubprocess: '',
-                              selectedSubprocessVersion: ''
+                              selectedProcess: product.processTitle,
+                              selectedSubprocess: product.subprocessTitle,
+                              selectedSubprocessVersion: product.subprocessVersion
                         });
+
+                        this.props.navigate("/");
+
                         message.success((params?.id ? "Updated" : "Saved") + " successfully");
                   }).catch(err => {
                         that.update({
@@ -155,7 +159,8 @@ export class RegistrationForm extends React.Component {
             return (
                   <Row gutter={[16, 16]}>
                         <Col span={24}>
-                              {this.props.params?.id ? <h1>Edit Product</h1> : <h1>Process Registration</h1>}
+                              {this.props.params?.id ? <h1>Edit Product</h1> :
+                                    <h1>Process Registration</h1>}
                         </Col>
                         <Col span={24}>
                               <Row gutter={[16, 16]}>
@@ -203,65 +208,14 @@ export class RegistrationForm extends React.Component {
                               </Row>
                         </Col>
                         <Col>
-                              <Button type="primary" style={{ minWidth: "200px" }} onClick={this.onSave} loading={loading}>Save</Button>
+                              <Button type="primary"
+                                    style={{ minWidth: "200px" }}
+                                    onClick={this.onSave}
+                                    loading={loading}>Save</Button>
                         </Col>
                   </Row>
             )
       }
 }
 
-const styles = {
-      ul: {
-            display: "flex",
-            width: "100%",
-            flexDirection: "column",
-            gap: '20px',
-      },
-      wrapper: {
-            display: "flex",
-            width: "100%",
-            flexDirection: "column",
-            gap: '20px',
-            paddingLeft: "60px"
-
-      }
-}
-
-function Choice({
-      selected,
-      onChange,
-      label,
-      children,
-      isNode,
-      uniqueKey
-}) {
-      const [visible, setVisible] = useState(false);
-      const toggler = visible ? <MinusCircleOutlined
-            style={{ color: '#00a6fb' }}
-            onClick={
-                  () => setVisible(false)
-            } /> : <PlusCircleOutlined
-            style={{ color: '#00a6fb' }}
-            onClick={
-                  () => setVisible(true)
-            } />;
-      return (
-            <Row key={uniqueKey}>
-                  <Col span={24}>
-                        <Row gutter={[16, 16]}>
-                              <Col>{isNode ? toggler : null}</Col>
-                              <Col>
-                                    <Checkbox checked={selected === label}
-                                          onChange={() => onChange(label)}>{label}</Checkbox>
-                              </Col>
-                        </Row>
-                        <Row gutter={[16, 16]}>
-                              <Col span={24}>
-                                    {visible ? <div style={styles.wrapper}>
-                                          {children}
-                                    </div> : null}
-                              </Col>
-                        </Row>
-                  </Col>
-            </Row>);
-}
+export default ProductForm = withRouter(ProductForm);

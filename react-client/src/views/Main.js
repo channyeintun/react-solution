@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "./Header";
 
-export function Main(){
+export function Main() {
       return <main style={styles.main}>
             <Header />
             <div style={styles.outlet}>
@@ -10,13 +10,13 @@ export function Main(){
       </main>
 }
 
-const styles={
-      main:{
-            width:"100vw",
-            heigth:"100vh",
+const styles = {
+      main: {
+            width: "100vw",
+            heigth: "100vh",
       },
-      outlet:{
-            width:"100%",
-            padding:"40px"
+      outlet: {
+            width: "100%",
+            padding: "40px"
       }
 }

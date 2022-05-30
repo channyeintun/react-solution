@@ -1,32 +1,31 @@
 import { ProductList } from "./ProductList";
 import { Main } from './Main';
-import { RegistrationForm } from "./RegistrationForm";
+import ProductForm from "./ProductForm";
 import { useRoutes } from 'react-router-dom';
-import { EditForm } from "./EditForm";
 
 function App() {
       const routes = [
             {
-                  path:"/",
-                  element:<Main />,
-                  children:[
+                  path: "/",
+                  element: <Main />,
+                  children: [
                         {
-                              index:true,
-                              element:<ProductList />
+                              index: true,
+                              element: <ProductList />
                         },
                         {
-                              path:"register",
-                              element:<RegistrationForm />
+                              path: "register",
+                              element: <ProductForm />
                         },
                         {
-                              path:"edit/:id",
-                              element:<EditForm />
+                              path: "edit/:id",
+                              element: <ProductForm />
                         }
                   ]
             },
             {
-                  path:"*",
-                  element:<h1>404 Not Found</h1>
+                  path: "*",
+                  element: <h1>404 Not Found</h1>
             }
       ];
 

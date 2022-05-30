@@ -19,11 +19,11 @@ export class ProductList extends React.Component {
                         this.update({
                               loading: false,
                               products
-                        })
+                        });
                   })
                   .catch(err => {
                         message.error(err.message);
-                        this.update({ loading: false })
+                        this.update({ loading: false });
                   });
       }
 
@@ -58,7 +58,9 @@ export class ProductList extends React.Component {
                         product => product.id !== +res.id
                   ),
                   loading: false
-            })
+            });
+
+            message.success("Deleted successfully")
       }
 
       render() {
