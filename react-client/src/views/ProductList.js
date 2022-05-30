@@ -44,6 +44,10 @@ export class ProductList extends React.Component {
                         that.update({ loading: true });
                         productService.deleteProductById(id)
                               .then(that.deleteSuccessHandler)
+                              .catch(err => {
+                                    that.update({ loading: false });
+                                    message.error(err.message);
+                              })
                   }
             })
       }
